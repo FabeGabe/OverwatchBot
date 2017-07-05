@@ -1,6 +1,7 @@
 package com.fabegabe.command;
 
 import com.fabegabe.Bot;
+import com.fabegabe.command.commands.DeSyncCommand;
 import com.fabegabe.command.commands.HelpCommand;
 import com.fabegabe.command.commands.SRCommand;
 import com.fabegabe.command.commands.SyncCommand;
@@ -21,6 +22,7 @@ public class CommandRegistry {
         this.commands = new HashSet<>();
         this.commands.add(new HelpCommand(this));
         this.commands.add(new SyncCommand(bot));
+        this.commands.add(new DeSyncCommand(bot));
         this.commands.add(new SRCommand(bot));
     }
 

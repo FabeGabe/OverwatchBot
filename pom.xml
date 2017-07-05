@@ -6,6 +6,7 @@
 
     <groupId>com.fabegabe</groupId>
     <artifactId>OverwatchBot</artifactId>
+    <packaging>pom</packaging>
     <version>1.1-SNAPSHOT</version>
     <build>
         <plugins>
@@ -57,6 +58,9 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>OverwatchBot</module>
+    </modules>
 
     <repositories>
         <repository>

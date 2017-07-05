@@ -1,8 +1,8 @@
 package com.fabegabe.command.commands;
 
 import com.fabegabe.Bot;
-import com.fabegabe.command.Command;
 import com.fabegabe.api.OverwatchAPI;
+import com.fabegabe.command.Command;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
@@ -43,7 +43,7 @@ public class SRCommand implements Command {
             builder.append("\n```\n");
             int i = 0;
             for(Object object : array) {
-                String s = (String) object;
+                String s = String.valueOf(object);
                 String[] split = s.split(":");
                 builder.append((++i) + " - " + split[1] + " - Platform: " + split[0] + "\n");
             }
@@ -80,7 +80,7 @@ public class SRCommand implements Command {
                                         .build()).queue(message -> m.delete().queue());
                 return;
             }
-            String s = (String) array.get(val - 1);
+            String s = String.valueOf(array.get(val - 1));
             String[] split = s.split(":");
             if(split[0].startsWith("pc")) {
                 OverwatchAPI.Region region = OverwatchAPI.Region.getByName(split[0].split("(?=-)")[1]);
@@ -107,7 +107,7 @@ public class SRCommand implements Command {
                             return;
                         }
                         JSONObject result = (JSONObject) object.get("result");
-                        if(((String)result.get("rating")).isEmpty()) {
+                        if (String.valueOf(result.get("rating")).isEmpty()) {
                             m.getTextChannel()
                                     .sendMessage(
                                             new MessageBuilder().append(m.getAuthor())
@@ -117,13 +117,13 @@ public class SRCommand implements Command {
                         }
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setColor(Color.ORANGE);
-                        builder.setAuthor((String) result.get("name"), "https://www.overbuff.com/players/pc/"
+                        builder.setAuthor(String.valueOf(result.get("name")), "https://www.overbuff.com/players/pc/"
                                 + battleTag.replaceAll("#", "-"), "http://bit.ly/2tbBuCT");
-                        builder.setThumbnail((String) result.get("icon"));
-                        // builder.setImage((String) result.get("ratingIcon"));
+                        builder.setThumbnail(String.valueOf(result.get("icon")));
+                        // builder.setImage(String.valueOf(result.get("ratingIcon")));
                         builder.addField("Platform", "PC-" + region.toString().toUpperCase(), false);
-                        builder.addField("SR", (String) result.get("rating"), false);
-                        builder.addField("Rank", (String) result.get("ratingName"), false);
+                        builder.addField("SR", String.valueOf(result.get("rating")), false);
+                        builder.addField("Rank", String.valueOf(result.get("ratingName")), false);
                         JSONObject compStats = ((JSONObject) result.get("competitiveStats"));
                         JSONObject gamesPlayed = (JSONObject) compStats.get("games");
                         builder.addField("Games Played", gamesPlayed.get("won")
@@ -180,7 +180,7 @@ public class SRCommand implements Command {
                         return;
                     }
                     JSONObject result = (JSONObject) object.get("result");
-                    if(((String)result.get("rating")).isEmpty()) {
+                    if (String.valueOf(result.get("rating")).isEmpty()) {
                         m.getTextChannel()
                                 .sendMessage(
                                         new MessageBuilder().append(m.getAuthor())
@@ -190,19 +190,19 @@ public class SRCommand implements Command {
                     }
                     EmbedBuilder builder = new EmbedBuilder();
                     builder.setColor(Color.ORANGE);
-                    builder.setAuthor((String) result.get("name"), "https://www.overbuff.com/players/" + platform + "/"
+                    builder.setAuthor(String.valueOf(result.get("name")), "https://www.overbuff.com/players/" + platform + "/"
                             + split[1], "http://bit.ly/2tbBuCT");
-                    builder.setThumbnail((String) result.get("icon"));
-                    // builder.setImage((String) result.get("ratingIcon"));
+                    builder.setThumbnail(String.valueOf(result.get("icon")));
+                    // builder.setImage(String.valueOf( result.get("ratingIcon"));
                     builder.addField("Platform", platform.toString().toUpperCase(), false);
-                    builder.addField("SR", (String) result.get("rating"), false);
-                    builder.addField("Rank", (String) result.get("ratingName"), false);
+                    builder.addField("SR", String.valueOf(result.get("rating")), false);
+                    builder.addField("Rank", String.valueOf(result.get("ratingName")), false);
                     JSONObject compStats = ((JSONObject) result.get("competitiveStats"));
                     JSONObject gamesPlayed = (JSONObject) compStats.get("games");
                     builder.addField("Games Played", gamesPlayed.get("won")
                             + "/" + gamesPlayed.get("played") + " Games Won", false);
-//                    double ratio = (double) Integer.valueOf((String) gamesPlayed.get("won"))
-//                            / Integer.valueOf((String)gamesPlayed.get("played")) * 100;
+//                    double ratio = (double) Integer.valueOf(String.valueOf( gamesPlayed.get("won"))
+//                            / Integer.valueOf(String.valueOf(gamesPlayed.get("played")) * 100;
 //                    builder.addField("Win Ratio", ratio + "%", false);
                     builder.setTitle(result.get("name") + "'s Competitive Overwatch Stats");
                     MessageEmbed embed = builder.build();
@@ -267,7 +267,7 @@ public class SRCommand implements Command {
                             return;
                         }
                         JSONObject result = (JSONObject) object.get("result");
-                        if(((String)result.get("rating")).isEmpty()) {
+                        if (String.valueOf(result.get("rating")).isEmpty()) {
                             m.getTextChannel()
                                     .sendMessage(
                                             new MessageBuilder().append(m.getAuthor())
@@ -277,19 +277,19 @@ public class SRCommand implements Command {
                         }
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setColor(Color.ORANGE);
-                        builder.setAuthor((String) result.get("name"), "https://www.overbuff.com/players/xbl/"
+                        builder.setAuthor(String.valueOf(result.get("name")), "https://www.overbuff.com/players/xbl/"
                                 + xboxGamerTag, "http://bit.ly/2tbBuCT");
-                        builder.setThumbnail((String) result.get("icon"));
-                        // builder.setImage((String) result.get("ratingIcon"));
+                        builder.setThumbnail(String.valueOf(result.get("icon")));
+                        // builder.setImage(String.valueOf(result.get("ratingIcon")));
                         builder.addField("Platform", "Xbox One", false);
-                        builder.addField("SR", (String) result.get("rating"), false);
-                        builder.addField("Rank", (String) result.get("ratingName"), false);
+                        builder.addField("SR", String.valueOf(result.get("rating")), false);
+                        builder.addField("Rank", String.valueOf(result.get("ratingName")), false);
                         JSONObject compStats = ((JSONObject) result.get("competitiveStats"));
                         JSONObject gamesPlayed = (JSONObject) compStats.get("games");
                         builder.addField("Games Played", gamesPlayed.get("won")
                                 + "/" + gamesPlayed.get("played") + " Games Won", false);
-//                        double ratio = (double) Integer.valueOf((String) gamesPlayed.get("won"))
-//                                / Integer.valueOf((String)gamesPlayed.get("played")) * 100;
+//                        double ratio = (double) Integer.valueOf(String.valueOf( gamesPlayed.get("won"))
+//                                / Integer.valueOf(String.valueOf(gamesPlayed.get("played")) * 100;
 //                        builder.addField("Win Ratio", ratio + "%", false);
                         builder.setTitle(result.get("name") + "'s Competitive Overwatch Stats");
                         MessageEmbed embed = builder.build();
@@ -356,7 +356,7 @@ public class SRCommand implements Command {
                             return;
                         }
                         JSONObject result = (JSONObject) object.get("result");
-                        if(((String)result.get("rating")).isEmpty()) {
+                        if (String.valueOf(result.get("rating")).isEmpty()) {
                             m.getTextChannel()
                                     .sendMessage(
                                             new MessageBuilder().append(m.getAuthor())
@@ -366,19 +366,19 @@ public class SRCommand implements Command {
                         }
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setColor(Color.ORANGE);
-                        builder.setAuthor((String) result.get("name"), "https://www.overbuff.com/players/psn/"
+                        builder.setAuthor(String.valueOf(result.get("name")), "https://www.overbuff.com/players/psn/"
                                 + psnId, "http://bit.ly/2tbBuCT");
-                        builder.setThumbnail((String) result.get("icon"));
-                        // builder.setImage((String) result.get("ratingIcon"));
+                        builder.setThumbnail(String.valueOf(result.get("icon")));
+                        // builder.setImage(String.valueOf(result.get("ratingIcon")));
                         builder.addField("Platform", "PlayStation 4", false);
-                        builder.addField("SR", (String) result.get("rating"), false);
-                        builder.addField("Rank", (String) result.get("ratingName"), false);
+                        builder.addField("SR", String.valueOf(result.get("rating")), false);
+                        builder.addField("Rank", String.valueOf(result.get("ratingName")), false);
                         JSONObject compStats = ((JSONObject) result.get("competitiveStats"));
                         JSONObject gamesPlayed = (JSONObject) compStats.get("games");
                         builder.addField("Games Played", gamesPlayed.get("won")
                                 + "/" + gamesPlayed.get("played") + " Games Won", false);
-//                        double ratio = (double) Integer.valueOf((String) gamesPlayed.get("won"))
-//                                / Integer.valueOf((String)gamesPlayed.get("played")) * 100;
+//                        double ratio = (double) Integer.valueOf(String.valueOf(gamesPlayed.get("won")))
+//                                / Integer.valueOf(String.valueOf(gamesPlayed.get("played")) * 100;
 //                        builder.addField("Win Ratio", ratio + "%", false);
                         builder.setTitle(result.get("name") + "'s Competitive Overwatch Stats");
                         MessageEmbed embed = builder.build();
@@ -443,7 +443,7 @@ public class SRCommand implements Command {
                             return;
                         }
                         JSONObject result = (JSONObject) object.get("result");
-                        if(((String)result.get("rating")).isEmpty()) {
+                        if ((String.valueOf(result.get("rating"))).isEmpty()) {
                             m.getTextChannel()
                                     .sendMessage(
                                             new MessageBuilder().append(m.getAuthor())
@@ -453,19 +453,19 @@ public class SRCommand implements Command {
                         }
                         EmbedBuilder builder = new EmbedBuilder();
                         builder.setColor(Color.ORANGE);
-                        builder.setAuthor((String) result.get("name"), "https://www.overbuff.com/players/pc/"
+                        builder.setAuthor(String.valueOf(result.get("name")), "https://www.overbuff.com/players/pc/"
                                 + battleTag.replaceAll("#", "-"), "http://bit.ly/2tbBuCT");
-                        builder.setThumbnail((String) result.get("icon"));
-                        // builder.setImage((String) result.get("ratingIcon"));
+                        builder.setThumbnail(String.valueOf(result.get("icon")));
+                        // builder.setImage(String.valueOf(result.get("ratingIcon"));
                         builder.addField("Platform", "PC-" + region.toString().toUpperCase(), false);
-                        builder.addField("SR", (String) result.get("rating"), false);
-                        builder.addField("Rank", (String) result.get("ratingName"), false);
+                        builder.addField("SR", String.valueOf(result.get("rating")), false);
+                        builder.addField("Rank", String.valueOf(result.get("ratingName")), false);
                         JSONObject compStats = ((JSONObject) result.get("competitiveStats"));
                         JSONObject gamesPlayed = (JSONObject) compStats.get("games");
                         builder.addField("Games Played", gamesPlayed.get("won")
                                 + "/" + gamesPlayed.get("played") + " Games Won", false);
-//                        double ratio = (double) Integer.valueOf((String) gamesPlayed.get("won"))
-//                                / Integer.valueOf((String)gamesPlayed.get("played")) * 100;
+//                        double ratio = (double) Integer.valueOf(String.valueOf(gamesPlayed.get("won")))
+//                                / Integer.valueOf(String.valueOf(gamesPlayed.get("played")) * 100;
 //                        builder.addField("Win Ratio", ratio + "%", false);
                         builder.setTitle(result.get("name") + "'s Competitive Overwatch Stats");
                         MessageEmbed embed = builder.build();
@@ -512,7 +512,7 @@ public class SRCommand implements Command {
 
     @Override
     public String getUsage() {
-        return "+sr [platform] [region] [username]";
+        return "+sr [platform] [region] [username] OR +sr [number]";
     }
 
     @Override

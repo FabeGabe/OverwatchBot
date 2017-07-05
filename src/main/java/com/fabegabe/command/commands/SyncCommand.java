@@ -1,8 +1,8 @@
 package com.fabegabe.command.commands;
 
 import com.fabegabe.Bot;
-import com.fabegabe.command.Command;
 import com.fabegabe.api.OverwatchAPI;
+import com.fabegabe.command.Command;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import org.json.simple.JSONArray;
@@ -276,12 +276,13 @@ public class SyncCommand implements Command {
 
     @Override
     public String getUsage() {
-        return "+owsync <pc|xbox|ps4> [region (pc only); default = us] <username|battletag>";
+        return "+sync <pc|xbox|ps4> [region (pc only); default = us] <username|battletag>";
     }
 
     @Override
     public String[] getAliases() {
-        return new String[]{"synchronize", "owsync", "owsynchronize", "syncro", "synch", "owsyncro"};
+        return new String[]{"synchronize", "owsync", "owsynchronize", "syncro", "synch", "owsyncro"
+                , "link", "owlink", "overwatchlink"};
     }
 
 }
