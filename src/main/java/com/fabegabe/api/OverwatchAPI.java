@@ -43,7 +43,7 @@ public class OverwatchAPI {
 
     public enum Region {
 
-        AMERICAS("us"), EUROPE("eu"), ASIA("asia"), CONSOLE("us");
+        AMERICAS("us"), EUROPE("eu"), ASIA("asia"), CONSOLE("console");
 
 
         private String name;
